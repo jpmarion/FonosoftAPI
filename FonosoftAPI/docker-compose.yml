@@ -1,0 +1,46 @@
+services:
+  mariadb-fonosoft:
+    image: mariadb:11.6.2-ubi9
+    container_name: mariadb-fonosoft
+    environment:
+      - MARIADB_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD}
+      - MARIADB_DATABASE=${MARIADB_DATABASE}
+      - MARIADB_USER=${MARIADB_USER}
+      - MARIADB_PASSWORD=${MARIADB_PASSWORD}
+    ports:
+      - "3306:3306"
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    restart: always
+  
+  phpmyadmin:
+    image: phpmyadmin
+    container_name: phpmyadmin
+    ports:
+      - "8080:80"
+    environment:
+      - PMA_HOST=mariadb-fonosoft
+      - PMA_USER=${MARIADB_USER}
+      - PMA_PASSWORD=${MARIADB_PASSWORD}
+      - PMA_ARBITRARY=1
+    depends_on:
+      - mariadb-fonosoft
+    restart: always
+
+  # webapi:
+  #   image: jpmarion/ws_fonosoftv2:1.0.11
+  #   container_name: ws_fonosoft
+  #   ports:
+  #     - "5001:5001"
+  #   environment:
+  #     - ConnectionStrings__ServerMysql=${MARIADB_SERVER}
+  #     - ConnectionStrings__UserMysql=${MARIADB_USER}
+  #     - ConnectionStrings__DatabaseMysql=${MARIADB_DATABASE}
+  #     - ConnectionStrings__PortMySql=${MARIADB_PORT}
+  #     - ConnectionStrings__PasswordMysql=${MARIADB_PASSWORD}
+  #     - UrlEmail__UrlConfirmarRegistro=${URL_CONFIRMAR_REGISTRO}
+  #   depends_on:
+  #     - mariadb-fonosoft
+
+volumes:
+  mariadb_data:
