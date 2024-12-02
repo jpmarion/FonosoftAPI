@@ -2,6 +2,15 @@
   "version": 3,
   "targets": {
     "net8.0": {
+      "AES/1.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/AES.dll": {}
+        },
+        "runtime": {
+          "lib/net8.0/AES.dll": {}
+        }
+      },
       "BouncyCastle.Cryptography/2.3.1": {
         "type": "package",
         "compile": {
@@ -13,6 +22,15 @@
           "lib/net6.0/BouncyCastle.Cryptography.dll": {
             "related": ".xml"
           }
+        }
+      },
+      "CifradoPE/2.0.2": {
+        "type": "package",
+        "compile": {
+          "lib/net7.0/CifradoPE.dll": {}
+        },
+        "runtime": {
+          "lib/net7.0/CifradoPE.dll": {}
         }
       },
       "Google.Protobuf/3.26.1": {
@@ -565,6 +583,18 @@
     }
   },
   "libraries": {
+    "AES/1.0.0": {
+      "sha512": "+JTfIBnF7JS+eATTuAfs2EaL+iYgfL9QGIifrXwChZgMYEEaQ24CD9F6XEVjcD2KbYzSLDID0rfAhaA+TClv6w==",
+      "type": "package",
+      "path": "aes/1.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "aes.1.0.0.nupkg.sha512",
+        "aes.nuspec",
+        "lib/net8.0/AES.dll"
+      ]
+    },
     "BouncyCastle.Cryptography/2.3.1": {
       "sha512": "buwoISwecYke3CmgG1AQSg+sNZjJeIb93vTAtJiHZX35hP/teYMxsfg0NDXGUKjGx6BKBTNKc77O2M3vKvlXZQ==",
       "type": "package",
@@ -583,6 +613,18 @@
         "lib/netstandard2.0/BouncyCastle.Cryptography.dll",
         "lib/netstandard2.0/BouncyCastle.Cryptography.xml",
         "packageIcon.png"
+      ]
+    },
+    "CifradoPE/2.0.2": {
+      "sha512": "H30XS2eRWT33d64UmMPc94UO9LHIHMhHbUxIAmtj1ucp2VsDxFT1Nt/0uD7X+Wm0z9OwMTptPd8nIENlDaXvGw==",
+      "type": "package",
+      "path": "cifradope/2.0.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "cifradope.2.0.2.nupkg.sha512",
+        "cifradope.nuspec",
+        "lib/net7.0/CifradoPE.dll"
       ]
     },
     "Google.Protobuf/3.26.1": {
@@ -2021,6 +2063,8 @@
   },
   "projectFileDependencyGroups": {
     "net8.0": [
+      "AES >= 1.0.0",
+      "CifradoPE >= 2.0.2",
       "MySql.Data >= 9.1.0",
       "Swashbuckle.AspNetCore >= 6.4.0"
     ]
@@ -2067,6 +2111,14 @@
       "net8.0": {
         "targetAlias": "net8.0",
         "dependencies": {
+          "AES": {
+            "target": "Package",
+            "version": "[1.0.0, )"
+          },
+          "CifradoPE": {
+            "target": "Package",
+            "version": "[2.0.2, )"
+          },
           "MySql.Data": {
             "target": "Package",
             "version": "[9.1.0, )"

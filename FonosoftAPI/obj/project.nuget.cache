@@ -1,10 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "5xtu/NjHSGE=",
+  "dgSpecHash": "hJ2qe2/uN1w=",
   "success": true,
   "projectFilePath": "/Users/juanpablomarion/Repos/FonosoftAPI/FonosoftAPI/FonosoftAPI.csproj",
   "expectedPackageFiles": [
+    "/Users/juanpablomarion/.nuget/packages/aes/1.0.0/aes.1.0.0.nupkg.sha512",
     "/Users/juanpablomarion/.nuget/packages/bouncycastle.cryptography/2.3.1/bouncycastle.cryptography.2.3.1.nupkg.sha512",
+    "/Users/juanpablomarion/.nuget/packages/cifradope/2.0.2/cifradope.2.0.2.nupkg.sha512",
     "/Users/juanpablomarion/.nuget/packages/google.protobuf/3.26.1/google.protobuf.3.26.1.nupkg.sha512",
     "/Users/juanpablomarion/.nuget/packages/k4os.compression.lz4/1.3.8/k4os.compression.lz4.1.3.8.nupkg.sha512",
     "/Users/juanpablomarion/.nuget/packages/k4os.compression.lz4.streams/1.3.8/k4os.compression.lz4.streams.1.3.8.nupkg.sha512",

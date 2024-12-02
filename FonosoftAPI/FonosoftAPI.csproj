@@ -7,6 +7,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Html\ConfirmarRegistro.html" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Html\ConfirmarRegistro.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AES" Version="1.0.0" />
+    <PackageReference Include="CifradoPE" Version="2.0.2" />
     <PackageReference Include="MySql.Data" Version="9.1.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
