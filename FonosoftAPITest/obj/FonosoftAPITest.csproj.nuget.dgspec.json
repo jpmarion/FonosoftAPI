@@ -4,14 +4,14 @@
     "/Users/juanpablomarion/Repos/FonosoftAPI/FonosoftAPITest/FonosoftAPITest.csproj": {}
   },
   "projects": {
-    "/Users/juanpablomarion/Repos/FonosoftAPI/FonosoftAPITest/FonosoftAPITest.csproj": {
+    "/Users/juanpablomarion/Repos/FonosoftAPI/FonosoftAPI/FonosoftAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/juanpablomarion/Repos/FonosoftAPI/FonosoftAPITest/FonosoftAPITest.csproj",
-        "projectName": "FonosoftAPITest",
-        "projectPath": "/Users/juanpablomarion/Repos/FonosoftAPI/FonosoftAPITest/FonosoftAPITest.csproj",
+        "projectUniqueName": "/Users/juanpablomarion/Repos/FonosoftAPI/FonosoftAPI/FonosoftAPI.csproj",
+        "projectName": "FonosoftAPI",
+        "projectPath": "/Users/juanpablomarion/Repos/FonosoftAPI/FonosoftAPI/FonosoftAPI.csproj",
         "packagesPath": "/Users/juanpablomarion/.nuget/packages/",
-        "outputPath": "/Users/juanpablomarion/Repos/FonosoftAPI/FonosoftAPITest/obj/",
+        "outputPath": "/Users/juanpablomarion/Repos/FonosoftAPI/FonosoftAPI/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/juanpablomarion/.nuget/NuGet/NuGet.Config"
@@ -43,6 +43,93 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "AES": {
+              "target": "Package",
+              "version": "[1.0.0, )"
+            },
+            "CifradoPE": {
+              "target": "Package",
+              "version": "[2.0.2, )"
+            },
+            "MySql.Data": {
+              "target": "Package",
+              "version": "[9.1.0, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.4.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.303/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/juanpablomarion/Repos/FonosoftAPI/FonosoftAPITest/FonosoftAPITest.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/juanpablomarion/Repos/FonosoftAPI/FonosoftAPITest/FonosoftAPITest.csproj",
+        "projectName": "FonosoftAPITest",
+        "projectPath": "/Users/juanpablomarion/Repos/FonosoftAPI/FonosoftAPITest/FonosoftAPITest.csproj",
+        "packagesPath": "/Users/juanpablomarion/.nuget/packages/",
+        "outputPath": "/Users/juanpablomarion/Repos/FonosoftAPI/FonosoftAPITest/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/juanpablomarion/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "/Users/juanpablomarion/Repos/FonosoftAPI/FonosoftAPI/FonosoftAPI.csproj": {
+                "projectPath": "/Users/juanpablomarion/Repos/FonosoftAPI/FonosoftAPI/FonosoftAPI.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Faker.Net.8.0": {
+              "target": "Package",
+              "version": "[1.0.0, )"
+            },
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
               "version": "[17.8.0, )"
