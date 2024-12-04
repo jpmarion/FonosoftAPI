@@ -10,6 +10,7 @@ using FonosoftAPI.Src.Login.Dominio.Interface;
 using FonosoftAPI.Src.Login.Infraestructura.Interface;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
+using ZstdSharp.Unsafe;
 
 
 namespace FonosoftAPI.Controllers
@@ -97,6 +98,38 @@ namespace FonosoftAPI.Controllers
             rspLoginUsuario.Token = GenerarToken(_usuario);
 
             return StatusCode(StatusCodes.Status200OK, rspLoginUsuario);
+
+        }
+
+        [HttpPatch]
+        [Route("ModificarContrasenia")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(IError), StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> ModificarContrasenia([FromServices] IAes aes,
+                                                              [FromServices] Func<string, IValidar> validarFactory,
+                                                              RqsModificarContrasenia rqsModificarContrasenia)
+        {
+            _usuario.NombreUsuario = rqsModificarContrasenia.NombreUsuario;
+            _usuario.Contrasenia = rqsModificarContrasenia.Contrasenia;
+            _usuario.NuevaContrasenia = rqsModificarContrasenia.NuevaContrasenia;
+            _usuario.RepetirContrasenia = rqsModificarContrasenia.NuevaContrasenia;
+
+            IValidar validar = validarFactory("ValidarModificarUsuario");
+
+            AEjecutarCUAsync<IUsuario> modificarContrasenia = new ModificarContraseniaCU<IUsuario>(_response,
+                                                                                                   _loginRepo,
+                                                                                                   _usuario,
+                                                                                                   aes,
+                                                                                                   validar);
+
+            _response = await modificarContrasenia.Ejecutar();
+
+            if (_response.Error != null)
+            {
+                return StatusCode(StatusCodes.Status400BadRequest, _response.Error);
+            }
+
+            return StatusCode(StatusCodes.Status200OK);
 
         }
 

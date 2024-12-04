@@ -32,6 +32,15 @@ namespace FonosoftAPI.Src.Login.Infraestructura
             }
             return null!;
         }
+        public async Task ModificarContrasenia(IUsuario usuario)
+        {
+            using MySqlCommand cmd = new MySqlCommand("U_UsuarioModifContrasenia", ObtenerConexion());
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("pId", usuario.Id);
+            cmd.Parameters.AddWithValue("pContrasenia", usuario.Contrasenia);
+
+            await cmd.ExecuteNonQueryAsync();
+        }
         public async Task<IUsuario> RegistrarUsuario(IUsuario usuario)
         {
             using MySqlCommand cmd = new MySqlCommand("I_Usuario", ObtenerConexion());

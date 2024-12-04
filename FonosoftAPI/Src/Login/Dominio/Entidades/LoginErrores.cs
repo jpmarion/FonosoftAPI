@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
 namespace FonosoftAPI.Src.Login.Dominio.Entidades
 {
     public class LoginErrores
@@ -29,5 +24,8 @@ namespace FonosoftAPI.Src.Login.Dominio.Entidades
         public static LoginErrores NombreUsuarioInexistente = new LoginErrores("5", "Nombre de usuario inexiste");
         public static LoginErrores ContraseniaNullOrEmpty = new LoginErrores("6", "Ingrese la contraseña");
         public static LoginErrores UsuarioContraseniaErronea = new LoginErrores("7", "Usuario o contraseña erroneos");
+        public static LoginErrores NuevaContraseniaNullOrEmpty = new LoginErrores("8", "Ingrese la nueva contraseña");
+        public static LoginErrores RepetirContraseniaNullOrEmpty = new LoginErrores("9", "Ingrese la contraseña a repetir");
+        public static LoginErrores NoCoincidenContrasenias = new LoginErrores("10", "No coinciden contraseñas");
     }
 }

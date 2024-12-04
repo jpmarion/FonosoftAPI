@@ -6,6 +6,7 @@ namespace FonosoftAPI.Src.Login.Infraestructura.Interface
     public interface ILoginRepo : ISqlRepo
     {
         Task<IUsuario> BuscarUsuarioXNombreUsuario(IUsuario usuario);
+        Task ModificarContrasenia(IUsuario usuario);
         Task<IUsuario> RegistrarUsuario(IUsuario usuario);
     }
 }

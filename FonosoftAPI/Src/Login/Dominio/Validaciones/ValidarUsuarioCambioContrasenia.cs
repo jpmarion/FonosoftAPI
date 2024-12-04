@@ -1,4 +1,3 @@
-using System.Text.RegularExpressions;
 using FonosoftAPI.Src.Compartido.Interface;
 using FonosoftAPI.Src.Compartido.Modelo;
 using FonosoftAPI.Src.Login.Dominio.Abstracta;
@@ -7,18 +6,26 @@ using FonosoftAPI.Src.Login.Dominio.Interface;
 
 namespace FonosoftAPI.Src.Login.Dominio.Validaciones
 {
-    public class ValidarUsuarioEmail : AValidarUsuario
+    public class ValidarUsuarioCambioContrasenia : AValidarUsuario
     {
+        public ValidarUsuarioCambioContrasenia()
+        {
+        }
+
         public override IError EsValido(IUsuario usuario)
         {
             LoginErrores? loginErrores = null;
-            if (string.IsNullOrEmpty(usuario.Email!.Trim()))
+            if (string.IsNullOrEmpty(usuario.NuevaContrasenia!.Trim()))
             {
-                loginErrores = LoginErrores.EmailNullOrEmpty;
+                loginErrores = LoginErrores.NuevaContraseniaNullOrEmpty;
             }
-            else if (!EsEmailValido(usuario.Email))
+            else if (String.IsNullOrEmpty(usuario.RepetirContrasenia!.Trim()))
             {
-                loginErrores = LoginErrores.EmailNoValido;
+                loginErrores = LoginErrores.RepetirContraseniaNullOrEmpty;
+            }
+            else if (usuario.NuevaContrasenia != usuario.RepetirContrasenia)
+            {
+                loginErrores = LoginErrores.NoCoincidenContrasenias;
             }
 
             if (loginErrores != null)
@@ -35,11 +42,6 @@ namespace FonosoftAPI.Src.Login.Dominio.Validaciones
                 return _validador.EsValido(usuario);
             }
             return null!;
-        }
-
-        private bool EsEmailValido(string email)
-        {
-            return Regex.IsMatch(email, @"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$");
         }
     }
 }

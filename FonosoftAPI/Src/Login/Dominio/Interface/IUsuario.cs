@@ -6,5 +6,7 @@ namespace FonosoftAPI.Src.Login.Dominio.Interface
         public string? NombreUsuario { get; set; }
         public string? Email { get; set; }
         public string? Contrasenia { get; set; }
+        public string? NuevaContrasenia { get; set; }
+        public string? RepetirContrasenia { get; set; }
     }
 }
