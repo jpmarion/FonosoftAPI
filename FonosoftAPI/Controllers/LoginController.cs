@@ -66,7 +66,10 @@ namespace FonosoftAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> LoginUsuario([FromServices] Func<string, IValidar> validarFactory,
+        [ProducesResponseType(typeof(RspLoginUsuario), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(typeof(IError), StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> Post([FromServices] Func<string, IValidar> validarFactory,
                                                       [FromServices] IAes aes,
                                                       RqsLoginUsuario rqsLoginUsuario)
         {
@@ -93,7 +96,7 @@ namespace FonosoftAPI.Controllers
             rspLoginUsuario.Id = _usuario.Id;
             rspLoginUsuario.Token = GenerarToken(_usuario);
 
-            return StatusCode(StatusCodes.Status201Created, rspLoginUsuario);
+            return StatusCode(StatusCodes.Status200OK, rspLoginUsuario);
 
         }
 
