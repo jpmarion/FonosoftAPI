@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: mariadb-fonosoft
--- Tiempo de generación: 02-12-2024 a las 16:42:25
+-- Tiempo de generación: 04-12-2024 a las 20:32:30
 -- Versión del servidor: 11.6.2-MariaDB
 -- Versión de PHP: 8.2.26
 
@@ -20,14 +20,11 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `fonosoft`
 --
-CREATE DATABASE IF NOT EXISTS `fonosoft` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_uca1400_ai_ci;
-USE `fonosoft`;
 
 DELIMITER $$
 --
 -- Procedimientos
 --
-DROP PROCEDURE IF EXISTS `I_Usuario`$$
 CREATE DEFINER=`root`@`%` PROCEDURE `I_Usuario` (IN `pNombreUsuario` TEXT, IN `pEmail` TEXT, IN `pContrasenia` TEXT)   BEGIN
     INSERT INTO usuario(
         nombre_usuario
@@ -43,7 +40,6 @@ CREATE DEFINER=`root`@`%` PROCEDURE `I_Usuario` (IN `pNombreUsuario` TEXT, IN `p
     SELECT LAST_INSERT_ID() id;
 END$$
 
-DROP PROCEDURE IF EXISTS `S_UsuarioXNombreUsuario`$$
 CREATE DEFINER=`root`@`%` PROCEDURE `S_UsuarioXNombreUsuario` (IN `pNombreUsuario` TEXT)   BEGIN
     SELECT 
         usuario.id
@@ -54,6 +50,13 @@ CREATE DEFINER=`root`@`%` PROCEDURE `S_UsuarioXNombreUsuario` (IN `pNombreUsuari
     WHERE usuario.nombre_usuario = pNombreUsuario;
 END$$
 
+CREATE DEFINER=`root`@`%` PROCEDURE `U_UsuarioModifContrasenia` (IN `pId` INT, IN `pContrasenia` TEXT)   BEGIN
+    UPDATE usuario 
+    SET
+        contrasenia = pContrasenia
+    WHERE id = pId;
+END$$
+
 DELIMITER ;
 
 -- --------------------------------------------------------
@@ -62,13 +65,19 @@ DELIMITER ;
 -- Estructura de tabla para la tabla `usuario`
 --
 
-DROP TABLE IF EXISTS `usuario`;
 CREATE TABLE `usuario` (
   `id` int(11) NOT NULL,
   `nombre_usuario` text NOT NULL,
   `contrasenia` text NOT NULL,
   `email` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+
+--
+-- Volcado de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`id`, `nombre_usuario`, `contrasenia`, `email`) VALUES
+(4, '3IHtiZ850NdywiJcBapbww==', 'TteXtSOmvEGl4PAZSbdhsQ==', 'G6DutyUwxTce+ZAbTYHQQnCxT/1uTWKpKdX095zo+rc=');
 
 --
 -- Índices para tablas volcadas
@@ -89,7 +98,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
