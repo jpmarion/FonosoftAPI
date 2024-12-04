@@ -51,6 +51,14 @@
               "target": "Package",
               "version": "[2.0.2, )"
             },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[8.0.11, )"
+            },
+            "Microsoft.IdentityModel.Tokens": {
+              "target": "Package",
+              "version": "[8.2.1, )"
+            },
             "MySql.Data": {
               "target": "Package",
               "version": "[9.1.0, )"

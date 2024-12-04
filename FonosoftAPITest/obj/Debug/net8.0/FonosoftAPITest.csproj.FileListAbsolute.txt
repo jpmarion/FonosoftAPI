@@ -131,3 +131,12 @@
 /Users/juanpablomarion/Repos/FonosoftAPI/FonosoftAPITest/bin/Debug/net8.0/Faker.Net.8.0.dll
 /Users/juanpablomarion/Repos/FonosoftAPI/FonosoftAPITest/bin/Debug/net8.0/nunit.framework.legacy.dll
 /Users/juanpablomarion/Repos/FonosoftAPI/FonosoftAPITest/bin/Debug/net8.0/de-DE/Faker.Net.8.0.resources.dll
+/Users/juanpablomarion/Repos/FonosoftAPI/FonosoftAPITest/bin/Debug/net8.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/Users/juanpablomarion/Repos/FonosoftAPI/FonosoftAPITest/bin/Debug/net8.0/Microsoft.IdentityModel.Abstractions.dll
+/Users/juanpablomarion/Repos/FonosoftAPI/FonosoftAPITest/bin/Debug/net8.0/Microsoft.IdentityModel.JsonWebTokens.dll
+/Users/juanpablomarion/Repos/FonosoftAPI/FonosoftAPITest/bin/Debug/net8.0/Microsoft.IdentityModel.Logging.dll
+/Users/juanpablomarion/Repos/FonosoftAPI/FonosoftAPITest/bin/Debug/net8.0/Microsoft.IdentityModel.Protocols.dll
+/Users/juanpablomarion/Repos/FonosoftAPI/FonosoftAPITest/bin/Debug/net8.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+/Users/juanpablomarion/Repos/FonosoftAPI/FonosoftAPITest/bin/Debug/net8.0/Microsoft.IdentityModel.Tokens.dll
+/Users/juanpablomarion/Repos/FonosoftAPI/FonosoftAPITest/bin/Debug/net8.0/System.IdentityModel.Tokens.Jwt.dll
+/Users/juanpablomarion/Repos/FonosoftAPI/FonosoftAPITest/obj/Debug/net8.0/FonosoftAPITest.sourcelink.json
