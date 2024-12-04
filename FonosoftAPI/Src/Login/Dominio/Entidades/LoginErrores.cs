@@ -26,5 +26,8 @@ namespace FonosoftAPI.Src.Login.Dominio.Entidades
         public static LoginErrores EmailNullOrEmpty = new LoginErrores("2", "Ingrese el email");
         public static LoginErrores EmailNoValido = new LoginErrores("3", "Formato email incorrecto");
         public static LoginErrores NombreUsuarioExistente = new LoginErrores("4", "Nombre usuario existente");
+        public static LoginErrores NombreUsuarioInexistente = new LoginErrores("5", "Nombre de usuario inexiste");
+        public static LoginErrores ContraseniaNullOrEmpty = new LoginErrores("6", "Ingrese la contraseña");
+        public static LoginErrores UsuarioContraseniaErronea = new LoginErrores("7", "Usuario o contraseña erroneos");
     }
 }

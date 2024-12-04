@@ -1,3 +1,4 @@
+using System.Text;
 using CifradoPE.Infraestructura;
 using CifradoPE.Infraestructura.Interface;
 using FonosoftAPI.Src.Compartido.Interface;
@@ -7,6 +8,8 @@ using FonosoftAPI.Src.Login.Dominio.Interface;
 using FonosoftAPI.Src.Login.Dominio.Validaciones;
 using FonosoftAPI.Src.Login.Infraestructura;
 using FonosoftAPI.Src.Login.Infraestructura.Interface;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +20,25 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+#region AUTENTICACION
+var jwtKey = builder.Configuration["Jwt:Key"];
+var jwtIssuer = builder.Configuration["Jwt:Issuer"];
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+.AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidIssuer = jwtIssuer,
+        ValidAudience = jwtIssuer,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey!))
+    };
+});
+#endregion
+
 #region MYSQL
 string? serverMySql = builder.Configuration.GetValue<string>("ConnectionStrings:ServerMysql");
 string? userMySql = builder.Configuration.GetValue<string>("ConnectionStrings:UserMysql");
@@ -26,11 +48,11 @@ string? passwordMysql = builder.Configuration.GetValue<string>("ConnectionString
 #endregion
 
 #region 
-string? host = builder.Configuration.GetValue<string>("host");
-int port = builder.Configuration.GetValue<int>("port");
-string? usuario = builder.Configuration.GetValue<string>("usuario");
-string? contrasenia = builder.Configuration.GetValue<string>("contrasenia");
-bool habilitaSSL = builder.Configuration.GetValue<bool>("habilitaSSL");
+string? host = builder.Configuration.GetValue<string>("Email:host");
+int port = builder.Configuration.GetValue<int>("Email:port");
+string? usuario = builder.Configuration.GetValue<string>("Email:usuario");
+string? contrasenia = builder.Configuration.GetValue<string>("Email:contrasenia");
+bool habilitaSSL = builder.Configuration.GetValue<bool>("Email:habilitaSSL");
 #endregion 
 
 #region ENCRIPTACION
@@ -48,12 +70,14 @@ builder.Services.AddScoped<IAuthEmail>(_ => new EmailRepo(host!, port, usuario!,
 
 #region VALIDACIONES
 builder.Services.AddScoped<ValidarRegistrarUsuario>();
+builder.Services.AddScoped<ValidarLoginUsuario>();
 
 builder.Services.AddScoped<Func<string, IValidar>>(provider => key =>
 {
     return key switch
     {
         "ValidarRegistrarUsuario" => provider.GetRequiredService<ValidarRegistrarUsuario>(),
+        "ValidarLoginUsuario" => provider.GetRequiredService<ValidarLoginUsuario>(),
         _ => throw new ArgumentException("Invalid key", nameof(key))
     };
 });
@@ -69,6 +93,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

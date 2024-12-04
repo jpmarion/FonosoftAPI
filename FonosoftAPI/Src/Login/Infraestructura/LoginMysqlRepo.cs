@@ -8,7 +8,11 @@ namespace FonosoftAPI.Src.Login.Infraestructura
 {
     public class LoginMysqlRepo : AMysqlRepo, ILoginRepo
     {
-        public LoginMysqlRepo(string server, string user, string database, string port, string password) : base(server, user, database, port, password)
+        public LoginMysqlRepo(string server,
+                              string user,
+                              string database,
+                              string port,
+                              string password) : base(server, user, database, port, password)
         {
         }
 
@@ -22,6 +26,7 @@ namespace FonosoftAPI.Src.Login.Infraestructura
             {
                 usuario.Id = reader.GetInt32("id");
                 usuario.Email = reader.GetString("email");
+                usuario.Contrasenia = reader.GetString("contrasenia");
 
                 return usuario;
             }
