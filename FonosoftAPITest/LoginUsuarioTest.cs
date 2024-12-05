@@ -88,7 +88,7 @@ namespace FonosoftAPITest
             var body = new
             {
                 nombreUsuario = "jpmarion",
-                contrasenia = "ErhnckrW"
+                contrasenia = "Jpm123456$"
             };
 
             var contenido = new StringContent(
