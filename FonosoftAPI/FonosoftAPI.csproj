@@ -8,10 +8,14 @@
 
   <ItemGroup>
     <None Remove="Html\ConfirmarRegistro.html" />
+    <None Remove="Html\ResetContrasenia.html" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="Html\ConfirmarRegistro.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Html\ResetContrasenia.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

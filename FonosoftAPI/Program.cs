@@ -72,6 +72,7 @@ builder.Services.AddScoped<IAuthEmail>(_ => new EmailRepo(host!, port, usuario!,
 builder.Services.AddScoped<ValidarRegistrarUsuario>();
 builder.Services.AddScoped<ValidarLoginUsuario>();
 builder.Services.AddScoped<ValidarModificarUsuario>();
+builder.Services.AddScoped<ValidarResetContrasenia>();
 
 builder.Services.AddScoped<Func<string, IValidar>>(provider => key =>
 {
@@ -80,6 +81,7 @@ builder.Services.AddScoped<Func<string, IValidar>>(provider => key =>
         "ValidarRegistrarUsuario" => provider.GetRequiredService<ValidarRegistrarUsuario>(),
         "ValidarLoginUsuario" => provider.GetRequiredService<ValidarLoginUsuario>(),
         "ValidarModificarUsuario" => provider.GetRequiredService<ValidarModificarUsuario>(),
+        "ValidarResetContrasenia" => provider.GetRequiredService<ValidarResetContrasenia>(),
         _ => throw new ArgumentException("Invalid key", nameof(key))
     };
 });

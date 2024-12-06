@@ -10,7 +10,6 @@ using FonosoftAPI.Src.Login.Dominio.Interface;
 using FonosoftAPI.Src.Login.Infraestructura.Interface;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
-using ZstdSharp.Unsafe;
 
 
 namespace FonosoftAPI.Controllers
@@ -105,9 +104,10 @@ namespace FonosoftAPI.Controllers
         [Route("ModificarContrasenia")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(IError), StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> ModificarContrasenia([FromServices] IAes aes,
-                                                              [FromServices] Func<string, IValidar> validarFactory,
-                                                              RqsModificarContrasenia rqsModificarContrasenia)
+        public async Task<IActionResult> ModificarContrasenia(
+            [FromServices] IAes aes,
+            [FromServices] Func<string, IValidar> validarFactory,
+            RqsModificarContrasenia rqsModificarContrasenia)
         {
             _usuario.NombreUsuario = rqsModificarContrasenia.NombreUsuario;
             _usuario.Contrasenia = rqsModificarContrasenia.Contrasenia;
@@ -131,6 +131,36 @@ namespace FonosoftAPI.Controllers
 
             return StatusCode(StatusCodes.Status200OK);
 
+        }
+
+        [HttpPatch]
+        [Route("ResetContrasenia")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(IError), StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> ResetContrasenia([FromServices] Func<string, IValidar> validarFactory,
+        [FromServices] IAes aes,
+        [FromServices] IAuthEmail authEmail,
+                                                          RqsResetContrasenia rqsResetContrasenia)
+        {
+            _usuario.NombreUsuario = rqsResetContrasenia.NombreUsuario;
+
+            IValidar validar = validarFactory("ValidarResetContrasenia");
+
+            AEjecutarCUAsync<IUsuario> resetContrasenia = new ResetContraseniaCU<IUsuario>(_response,
+                                                                                           _loginRepo,
+                                                                                           validar,
+                                                                                           aes,
+                                                                                           _usuario,
+                                                                                           authEmail);
+
+            _response = await resetContrasenia.Ejecutar();
+
+            if (_response.Error != null)
+            {
+                return StatusCode(StatusCodes.Status400BadRequest, _response.Error);
+            }
+
+            return StatusCode(StatusCodes.Status200OK);
         }
 
         private string? GenerarToken(IUsuario usuario)

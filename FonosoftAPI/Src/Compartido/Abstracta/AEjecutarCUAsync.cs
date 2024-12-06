@@ -6,7 +6,7 @@ namespace FonosoftAPI.Src.Compartido.Abstracta
 {
     public abstract class AEjecutarCUAsync<T>
     {
-        private IResponse<T> _response;
+        public IResponse<T> _response;
 
         protected AEjecutarCUAsync(IResponse<T> response)
         {
