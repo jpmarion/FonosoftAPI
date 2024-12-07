@@ -140,3 +140,4 @@
 /Users/juanpablomarion/Repos/FonosoftAPI/FonosoftAPITest/bin/Debug/net8.0/Microsoft.IdentityModel.Tokens.dll
 /Users/juanpablomarion/Repos/FonosoftAPI/FonosoftAPITest/bin/Debug/net8.0/System.IdentityModel.Tokens.Jwt.dll
 /Users/juanpablomarion/Repos/FonosoftAPI/FonosoftAPITest/obj/Debug/net8.0/FonosoftAPITest.sourcelink.json
+/Users/juanpablomarion/Repos/FonosoftAPI/FonosoftAPITest/bin/Debug/net8.0/Html/ResetContrasenia.html
