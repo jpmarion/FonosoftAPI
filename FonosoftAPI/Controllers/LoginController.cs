@@ -93,8 +93,8 @@ namespace FonosoftAPI.Controllers
 
 
             RspLoginUsuario rspLoginUsuario = new RspLoginUsuario();
-            rspLoginUsuario.Id = _usuario.Id;
-            rspLoginUsuario.Token = GenerarToken(_usuario);
+            rspLoginUsuario.Id = _response.Data.Id;
+            rspLoginUsuario.Token = GenerarToken(_response.Data);
 
             return StatusCode(StatusCodes.Status200OK, rspLoginUsuario);
 

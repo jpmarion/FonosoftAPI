@@ -27,20 +27,20 @@ services:
       - mariadb-fonosoft
     restart: always
 
-  # webapi:
-  #   image: jpmarion/ws_fonosoftv2:1.0.11
-  #   container_name: ws_fonosoft
-  #   ports:
-  #     - "5001:5001"
-  #   environment:
-  #     - ConnectionStrings__ServerMysql=${MARIADB_SERVER}
-  #     - ConnectionStrings__UserMysql=${MARIADB_USER}
-  #     - ConnectionStrings__DatabaseMysql=${MARIADB_DATABASE}
-  #     - ConnectionStrings__PortMySql=${MARIADB_PORT}
-  #     - ConnectionStrings__PasswordMysql=${MARIADB_PASSWORD}
-  #     - UrlEmail__UrlConfirmarRegistro=${URL_CONFIRMAR_REGISTRO}
-  #   depends_on:
-  #     - mariadb-fonosoft
+  webapi:
+    image: jpmarion/fonosoftapi:1.0.3
+    container_name: fonosoftapi
+    ports:
+      - "5001:8080"
+    environment:
+      - ConnectionStrings__ServerMysql=${MARIADB_SERVER}
+      - ConnectionStrings__UserMysql=${MARIADB_USER}
+      - ConnectionStrings__DatabaseMysql=${MARIADB_DATABASE}
+      - ConnectionStrings__PortMySql=${MARIADB_PORT}
+      - ConnectionStrings__PasswordMysql=${MARIADB_PASSWORD}
+      - UrlEmail__UrlConfirmarRegistro=${URL_CONFIRMAR_REGISTRO}
+    depends_on:
+      - mariadb-fonosoft
 
 volumes:
   mariadb_data:

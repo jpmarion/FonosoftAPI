@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FonosoftAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+54ce8685de862e4bd77d5b17b3bff6cbbfaf4f1a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2983dbe475ee32e9eb3da2a2697fc3554e3bd804")]
 [assembly: System.Reflection.AssemblyProductAttribute("FonosoftAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FonosoftAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

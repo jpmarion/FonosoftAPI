@@ -13,6 +13,10 @@ using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Configuration
+    .AddJsonFile("appsettings.json", false, reloadOnChange: true)
+    .AddEnvironmentVariables();
+
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -90,11 +94,22 @@ builder.Services.AddScoped<Func<string, IValidar>>(provider => key =>
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+// if (app.Environment.IsDevelopment())
+// {
+//     app.UseSwagger();
+//     app.UseSwaggerUI();
+// }
+
+app.UsePathBase("/fonosoftAPI");
+
+app.UseSwagger();
+app.UseSwaggerUI(options =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+    // Define la ruta de Swagger UI con el prefijo
+    options.SwaggerEndpoint("/fonosoftAPI/swagger/v1/swagger.json", "FonosoftAPI v1");
+    options.RoutePrefix = "swagger";  // Prefijo para acceder a Swagger UI
+});
+app.UseHttpsRedirection();
 
 app.UseHttpsRedirection();
 
