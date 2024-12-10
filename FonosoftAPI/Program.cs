@@ -91,6 +91,19 @@ builder.Services.AddScoped<Func<string, IValidar>>(provider => key =>
 });
 #endregion
 
+#region CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAllOrigins",
+        policy =>
+        {
+            policy.AllowAnyOrigin() // Permite cualquier origen
+                  .AllowAnyHeader() // Permite cualquier encabezado
+                  .AllowAnyMethod(); // Permite cualquier método (GET, POST, etc.)
+        });
+});
+#endregion
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -110,6 +123,8 @@ app.UseSwaggerUI(options =>
     options.RoutePrefix = "swagger";  // Prefijo para acceder a Swagger UI
 });
 app.UseHttpsRedirection();
+
+app.UseCors("AllowAllOrigins");
 
 app.UseHttpsRedirection();
 

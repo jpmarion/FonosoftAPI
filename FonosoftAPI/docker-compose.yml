@@ -28,7 +28,7 @@ services:
     restart: always
 
   webapi:
-    image: jpmarion/fonosoftapi:1.0.3
+    image: jpmarion/fonosoftapi:1.0.6
     container_name: fonosoftapi
     ports:
       - "5001:8080"
