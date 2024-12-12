@@ -368,3 +368,11 @@ FonosoftAPITest/bin/Debug/net8.0/nunit_random_seed.tmp
 FonosoftAPITest/obj/Debug/net8.0/FonosoftAPITest.AssemblyInfo.cs
 FonosoftAPITest/obj/Debug/net8.0/FonosoftAPITest.AssemblyInfoInputs.cache
 FonosoftAPITest/obj/Debug/net8.0/FonosoftAPITest.csproj.AssemblyReference.cache
+FonosoftAPI/obj/Debug/net8.0/FonosoftAPI.AssemblyInfo.cs
+FonosoftAPI/obj/Debug/net8.0/FonosoftAPI.AssemblyInfoInputs.cache
+FonosoftAPITest/bin/Debug/net8.0/appsettings.json
+FonosoftAPITest/bin/Debug/net8.0/FonosoftAPI.dll
+FonosoftAPITest/bin/Debug/net8.0/FonosoftAPI.pdb
+FonosoftAPITest/bin/Debug/net8.0/FonosoftAPITest.dll
+FonosoftAPITest/bin/Debug/net8.0/FonosoftAPITest.pdb
+FonosoftAPITest/bin/Debug/net8.0/nunit_random_seed.tmp
