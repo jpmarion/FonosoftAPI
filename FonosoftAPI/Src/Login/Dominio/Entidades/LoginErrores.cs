@@ -27,5 +27,6 @@ namespace FonosoftAPI.Src.Login.Dominio.Entidades
         public static LoginErrores NuevaContraseniaNullOrEmpty = new LoginErrores("8", "Ingrese la nueva contraseña");
         public static LoginErrores RepetirContraseniaNullOrEmpty = new LoginErrores("9", "Ingrese la contraseña a repetir");
         public static LoginErrores NoCoincidenContrasenias = new LoginErrores("10", "No coinciden contraseñas");
+        public static LoginErrores IdNullOrEmpty = new LoginErrores("11","Ingrese el Id");
     }
 }

@@ -16,6 +16,21 @@ namespace FonosoftAPI.Src.Login.Infraestructura
         {
         }
 
+        public async Task<IUsuario> BuscarUsuarioXId(IUsuario usuario){
+            using MySqlCommand cmd = new MySqlCommand("S_UsuarioXId", ObtenerConexion());
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("pId", usuario.Id);
+            using var reader = await cmd.ExecuteReaderAsync();
+            if (await reader.ReadAsync())
+            {
+                usuario.Id = reader.GetInt32("id");
+                usuario.NombreUsuario = reader.GetString("nombre_usuario");
+                usuario.Email = reader.GetString("email");
+
+                return usuario;
+            }
+            return null!;
+        }
         public async Task<IUsuario> BuscarUsuarioXNombreUsuario(IUsuario usuario)
         {
             using MySqlCommand cmd = new MySqlCommand("S_UsuarioXNombreUsuario", ObtenerConexion());
