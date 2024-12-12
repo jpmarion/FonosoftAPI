@@ -42,13 +42,13 @@ namespace FonosoftAPI.Src.Login.Aplicacion
             IResponse<T> response = new Response<T>();
             if (usuarioBuscar.Contrasenia != _aes.Encriptar(_usuario.Contrasenia!))
             {
-                // LoginErrores loginErrores = LoginErrores.UsuarioContraseniaErronea;
+                LoginErrores loginErrores = LoginErrores.UsuarioContraseniaErronea;
 
-                // IError error = new Error();
-                // error.NroError = loginErrores.NroError;
-                // error.MsgError = loginErrores.MsgError;
+                IError error = new Error();
+                error.NroError = loginErrores.NroError;
+                error.MsgError = loginErrores.MsgError;
 
-                // response.Error = error;
+                response.Error = error;
 
                 return response;
             }
