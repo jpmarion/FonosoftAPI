@@ -129,6 +129,23 @@ namespace FonosoftAPI.Controllers
 
             return StatusCode(StatusCodes.Status200OK);
         }
+
+        [HttpGet]
+        [Route("TokenValido")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(IError), StatusCodes.Status400BadRequest)]
+        public IActionResult TokenValido(string token)
+        {
+            if (string.IsNullOrEmpty(token))
+            {
+                return StatusCode(StatusCodes.Status400BadRequest, "Ingrese el token");
+            }
+
+            bool tokenValido = ValidarToken(token);
+
+            return StatusCode(StatusCodes.Status200OK, tokenValido);
+        }
+
         private string? GenerarToken(IUsuario usuario)
         {
             string key = _configuration["Jwt:Key"] + "ryvZcx4ERMl+hVUduyQuKdQUDI4hD+qE8AemMhLzXJI=";
@@ -154,6 +171,35 @@ namespace FonosoftAPI.Controllers
             );
 
             return new JwtSecurityTokenHandler().WriteToken(token);
+        }
+
+        private bool ValidarToken(string token)
+        {
+            var key = _configuration["Jwt:Key"] + "ryvZcx4ERMl+hVUduyQuKdQUDI4hD+qE8AemMhLzXJI=";
+            var jwtKey = key.Substring(0, 44);
+            var issuer = _configuration["Jwt:Issuer"];
+
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var validationParameters = new TokenValidationParameters
+            {
+                ValidateIssuer = true,
+                ValidateAudience = true,
+                ValidateLifetime = true,
+                ValidateIssuerSigningKey = true,
+                ValidIssuer = issuer,
+                ValidAudience = issuer,
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey))
+            };
+
+            try
+            {
+                tokenHandler.ValidateToken(token, validationParameters, out SecurityToken validatedToken);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }
