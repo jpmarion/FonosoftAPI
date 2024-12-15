@@ -132,7 +132,7 @@ namespace FonosoftAPI.Controllers
 
         [HttpGet]
         [Route("TokenValido")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(RspTokenValido), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(IError), StatusCodes.Status400BadRequest)]
         public IActionResult TokenValido(string token)
         {
@@ -141,9 +141,11 @@ namespace FonosoftAPI.Controllers
                 return StatusCode(StatusCodes.Status400BadRequest, "Ingrese el token");
             }
 
-            bool tokenValido = ValidarToken(token);
+            RspTokenValido rspTokenValido = new RspTokenValido();
 
-            return StatusCode(StatusCodes.Status200OK, tokenValido);
+            rspTokenValido.EsTokenValido = ValidarToken(token);
+
+            return StatusCode(StatusCodes.Status200OK, rspTokenValido);
         }
 
         private string? GenerarToken(IUsuario usuario)
